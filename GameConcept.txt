@@ -1,0 +1,29 @@
+PlayerMovement : Sujan
+EnemyAI : Prashant
+Scene Setup : Kushal
+
+
+Checkpoint at Small Treasures
+Items in chest :
+  PlayerSkills : Dash, Invisible, Teleport 
+Main Goal :
+  Big Treasure 
+
+
+UI :
+  MainMenu
+  PauseMenu
+Score System :
+  Open All small Treasure
+  Timer
+
+
+
+
+
+
+
+
+Additional :
+  Traps
+
