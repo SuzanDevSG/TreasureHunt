@@ -15,7 +15,8 @@ MonoBehaviour:
   id: 1
   characterName: Omen
   characterDescription: 
-  maxSpeed: 5
+  maxSpeed: 10
+  maxJump: 10
   maxHealth: 100
   maxEnergy: 100
   skillId: 000000000100000002000000
