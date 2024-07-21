@@ -7,7 +7,7 @@ public class PlayerProfileSO : ScriptableObject
     public string characterName, characterDescription;
 
 
-    public float maxSpeed, maxJump, maxHealth, maxEnergy;
+    public float maxSpeed, maxHealth, maxEnergy;
     public int[] skillId;
 
 }
