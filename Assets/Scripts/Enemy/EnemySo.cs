@@ -9,4 +9,6 @@ public class EnemyData : ScriptableObject
     public LayerMask WhatIsPlayer;
     public LayerMask WhatIsGround;
     public LayerMask ObstacleMask;
+    public float attackCooldown;
+    public int attackDamage;
 }

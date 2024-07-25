@@ -36,11 +36,11 @@ public class PatrollingEnemy : MonoBehaviour
         }
         else if (playerInSightRange && !playerInAttackRange)
         {
-            // Have to add or remaining to add chase player or other behavior
+            ChasePlayer();
         }
         else if (playerInAttackRange)
         {
-            // Have to add or remaining to add attack player or other behavior
+            AttackPlayer();
         }
     }
 
@@ -53,7 +53,7 @@ public class PatrollingEnemy : MonoBehaviour
             Vector3 directionToPlayer = (target.position - transform.position).normalized;
             float distanceToPlayer = Vector3.Distance(transform.position, target.position);
 
-            //perform raycast and check obstacle
+            // Perform raycast and check for obstacles
             if (!Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, enemyData.ObstacleMask))
             {
                 return true;
@@ -69,8 +69,39 @@ public class PatrollingEnemy : MonoBehaviour
 
         if (agent.remainingDistance < 1f)
         {
-            currentWaypointIndex = (currentWaypointIndex + 1) %waypoints.Length;
+            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
             agent.SetDestination(waypoints[currentWaypointIndex].position);
         }
     }
+
+    private void ChasePlayer()
+    {
+        agent.SetDestination(player.position);
+    }
+
+    private void AttackPlayer()
+    {
+        
+        agent.SetDestination(transform.position);
+
+        
+        transform.LookAt(player);
+
+        
+        if (!alreadyAttacked)
+        {
+            
+            player.GetComponent<Health>().TakeDamage(enemyData.attackDamage);
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), enemyData.attackCooldown);
+        }
+    }
+
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
+    }
+
+    private bool alreadyAttacked;
 }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07f2cf23695c604ba393db3f854ef13, type: 3}
   m_Name: EnemyData
   m_EditorClassIdentifier: 
-  sightRange: 10
-  attackRange: 10
+  sightRange: 20
+  attackRange: 1
   WhatIsPlayer:
     serializedVersion: 2
     m_Bits: 8
@@ -23,3 +23,5 @@ MonoBehaviour:
   ObstacleMask:
     serializedVersion: 2
     m_Bits: 128
+  attackCooldown: 2
+  attackDamage: 0
