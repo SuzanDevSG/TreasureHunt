@@ -18,4 +18,5 @@ MonoBehaviour:
   maxSpeed: 5
   maxHealth: 100
   maxEnergy: 100
+  lookSpeed: 0.05
   skillId: 000000000100000002000000
