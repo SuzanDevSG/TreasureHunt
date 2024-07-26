@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\NewInputSystem\PlayerInputSystem.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\PlayerAnimations.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\PlayerProfileSO.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerController.cs" />
   </ItemGroup>
