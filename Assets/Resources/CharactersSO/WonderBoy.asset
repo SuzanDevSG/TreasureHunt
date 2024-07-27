@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: WonderBoy
   m_EditorClassIdentifier: 
   id: 1
-  characterName: Omen
+  characterName: Jett
   characterDescription: 
-  maxSpeed: 5
+  maxSpeed: 2.5
   maxHealth: 100
   maxEnergy: 100
+  lookSpeed: 0.25
   skillId: 000000000100000002000000
