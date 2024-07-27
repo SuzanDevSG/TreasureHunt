@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyData
   m_EditorClassIdentifier: 
   sightRange: 20
-  attackRange: 1
+  attackRange: 10
   WhatIsPlayer:
     serializedVersion: 2
     m_Bits: 8
@@ -24,4 +24,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   attackCooldown: 2
-  attackDamage: 0
+  attackDamage: 20
