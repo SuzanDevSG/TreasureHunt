@@ -70,13 +70,8 @@
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerController.cs" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <None Include="Assets\Polytope Studio\Lowpoly_Characters\Sources\Modular_Armors\Shaders\PT_Armors_Shader_PBR.shader" />
-    <None Include="Assets\Polytope Studio\Lowpoly_Characters\Sources\Modular_Armors\Shaders\PT_Armors_Shader_Toon.shader" />
-=======
     <None Include="Assets\Arts\Polytope Studio\Lowpoly_Characters\Sources\Modular_Armors\Shaders\PT_Armors_Shader_PBR.shader" />
     <None Include="Assets\Arts\Polytope Studio\Lowpoly_Characters\Sources\Modular_Armors\Shaders\PT_Armors_Shader_Toon.shader" />
->>>>>>> cc1deee03a6eca4897e20ed96a47c72b021ba256
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
