@@ -71,9 +71,8 @@
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\DelthorGames\AKM\HowToUse.txt" />
-    <None Include="Assets\Polytope Studio\Lowpoly_Characters\Sources\Modular_Armors\Shaders\PT_Armors_Shader_PBR.shader" />
-    <None Include="Assets\Polytope Studio\Lowpoly_Characters\Sources\Modular_Armors\Shaders\PT_Armors_Shader_Toon.shader" />
+    <None Include="Assets\Arts\Polytope Studio\Lowpoly_Characters\Sources\Modular_Armors\Shaders\PT_Armors_Shader_PBR.shader" />
+    <None Include="Assets\Arts\Polytope Studio\Lowpoly_Characters\Sources\Modular_Armors\Shaders\PT_Armors_Shader_Toon.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
