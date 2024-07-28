@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/AN Interactive Physical Door Pack/FBX/Key.FBX.meta
 guid: 9786d89b3b98ae44baca280237b69798
 ModelImporter:
   serializedVersion: 19300
+========
+guid: d393170f45a6d0149b602b763acf4cb7
+ModelImporter:
+  serializedVersion: 19301
+>>>>>>>> df9f853716f5c0bbd1400dba5f5114fa7f5cd395:Assets/Arts/Art/Characters/Stylized/Humans/Meshes_Humans/StylizedHumanMale_Beard3.fbx.meta
   internalIDToNameTable: []
   externalObjects: {}
   materials:
@@ -43,6 +49,10 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+<<<<<<<< HEAD:Assets/AN Interactive Physical Door Pack/FBX/Key.FBX.meta
+========
+    fileIdsGeneration: 2
+>>>>>>>> df9f853716f5c0bbd1400dba5f5114fa7f5cd395:Assets/Arts/Art/Characters/Stylized/Humans/Meshes_Humans/StylizedHumanMale_Beard3.fbx.meta
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1

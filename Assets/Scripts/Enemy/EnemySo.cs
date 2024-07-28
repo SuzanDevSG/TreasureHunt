@@ -5,7 +5,7 @@ public class EnemyData : ScriptableObject
 {
     
     public float sightRange;
-    public float attackRange;
+    public float chaseRange;
     public LayerMask WhatIsPlayer;
     public LayerMask WhatIsGround;
     public LayerMask ObstacleMask;

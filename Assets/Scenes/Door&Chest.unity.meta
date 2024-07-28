@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Door&Chest.unity.meta
 guid: ec5aed0f4ad4ef149a17526c1e640451
+========
+guid: 511349ec5272ece458b0ade6c4725996
+>>>>>>>> df9f853716f5c0bbd1400dba5f5114fa7f5cd395:Assets/Arts/Art/Characters/Stylized/Demo_Characters/DEMO_FreeStylizedHumanMale.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

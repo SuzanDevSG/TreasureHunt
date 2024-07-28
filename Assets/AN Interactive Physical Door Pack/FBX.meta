@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/AN Interactive Physical Door Pack/FBX.meta
 guid: d44ea9f144871454db7d2be332b018a4
+========
+guid: de17196c6b320cb498986411381e4f08
+>>>>>>>> df9f853716f5c0bbd1400dba5f5114fa7f5cd395:Assets/Arts/Art/Animations/Gathering.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

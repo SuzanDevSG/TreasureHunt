@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Arts/Animations/Enemy/Look Around.anim.meta
+guid: df74e1ce9c07b0d40936cdb235578c28
+========
+guid: 70784ab7505368c4d96d017c85eacc96
+>>>>>>>> cc1deee03a6eca4897e20ed96a47c72b021ba256:Assets/Arts/Animations/PlayerAnimations/Animations/Sprint.anim.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
