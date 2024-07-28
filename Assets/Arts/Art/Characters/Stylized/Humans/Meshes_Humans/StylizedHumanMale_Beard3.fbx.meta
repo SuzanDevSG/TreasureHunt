@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/AN Interactive Physical Door Pack/FBX/Key.FBX.meta
+guid: 02fab866c4ca4df4ab019585f5da8eb0
+ModelImporter:
+  serializedVersion: 19300
+========
 guid: d393170f45a6d0149b602b763acf4cb7
 ModelImporter:
   serializedVersion: 19301
+>>>>>>>> df9f853716f5c0bbd1400dba5f5114fa7f5cd395:Assets/Arts/Art/Characters/Stylized/Humans/Meshes_Humans/StylizedHumanMale_Beard3.fbx.meta
   internalIDToNameTable: []
   externalObjects: {}
   materials:
@@ -34,7 +40,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 2.5
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -43,7 +49,10 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+<<<<<<<< HEAD:Assets/AN Interactive Physical Door Pack/FBX/Key.FBX.meta
+========
     fileIdsGeneration: 2
+>>>>>>>> df9f853716f5c0bbd1400dba5f5114fa7f5cd395:Assets/Arts/Art/Characters/Stylized/Humans/Meshes_Humans/StylizedHumanMale_Beard3.fbx.meta
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -81,7 +90,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.0025000002
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

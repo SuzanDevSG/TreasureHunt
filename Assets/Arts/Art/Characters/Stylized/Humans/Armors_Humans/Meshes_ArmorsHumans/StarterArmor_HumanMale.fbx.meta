@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/AN Interactive Physical Door Pack/FBX/Circule.FBX.meta
+guid: 50eecdcf8705060439b40f9020dac667
+========
 guid: 55295a45c3d658c44b42c8e67983b8db
+>>>>>>>> df9f853716f5c0bbd1400dba5f5114fa7f5cd395:Assets/Arts/Art/Characters/Stylized/Humans/Armors_Humans/Meshes_ArmorsHumans/StarterArmor_HumanMale.fbx.meta
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -34,7 +38,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 5
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -81,7 +85,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.0050000004
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
