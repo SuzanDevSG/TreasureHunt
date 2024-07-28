@@ -77,11 +77,6 @@
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\DelthorGames\AKM\HowToUse.txt" />
-    <None Include="Assets\Polytope Studio\Lowpoly_Characters\Sources\Modular_Armors\Shaders\PT_Armors_Shader_PBR.shader" />
-    <None Include="Assets\Polytope Studio\Lowpoly_Characters\Sources\Modular_Armors\Shaders\PT_Armors_Shader_Toon.shader" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.37f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
       <Private>False</Private>
