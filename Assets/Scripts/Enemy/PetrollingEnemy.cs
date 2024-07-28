@@ -10,22 +10,22 @@ public class PatrollingEnemy : MonoBehaviour
     public EnemyData enemyData;
     public Transform[] waypoints;
     private int currentWaypointIndex = 0;
-    public bool playerInSightRange, playerInAttackRange;
+    public bool playerInSightRange, playerInChaseRange;
     [SerializeField] private Transform SpawnPoint;
     public float Speed;
-    [SerializeField] private Bullet Bullet;
-    public float timeBetweenAttacks;
 
-    private Animator animator;
-    private bool alreadyAttacked;
+    [SerializeField] private Animator animator;
 
     // Field of View angle in degrees
     public float fieldOfViewAngle = 110f;
+    [SerializeField] private float chaseRange = 15f; // Chase range for the enemy
+    [SerializeField] private float chaseSpeed;
+    [SerializeField] private float patrolSpeed;
+    [SerializeField] private AudioSource chaseAudioSource;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>(); // Get the Animator component
     }
 
     void Start()
@@ -39,19 +39,19 @@ public class PatrollingEnemy : MonoBehaviour
     void Update()
     {
         playerInSightRange = CheckPlayerInSightRange();
-        playerInAttackRange = Physics.CheckSphere(transform.position, enemyData.attackRange, enemyData.WhatIsPlayer);
+        playerInChaseRange = CheckPlayerInChaseRange();
 
-        if (!playerInSightRange && !playerInAttackRange)
+        if (!playerInSightRange && !playerInChaseRange)
         {
             Patrol();
         }
-        else if (playerInSightRange && !playerInAttackRange)
+        else if (playerInSightRange && playerInChaseRange)
         {
             ChasePlayer();
         }
-        else if (playerInAttackRange)
+        else if (!playerInSightRange && playerInChaseRange)
         {
-            AttackPlayer();
+            Patrol();
         }
     }
 
@@ -78,56 +78,50 @@ public class PatrollingEnemy : MonoBehaviour
         return false;
     }
 
+    private bool CheckPlayerInChaseRange()
+    {
+        return Vector3.Distance(transform.position, player.position) <= chaseRange;
+    }
+
     private void Patrol()
     {
         if (waypoints.Length == 0)
             return;
 
         animator.SetBool("isPatrolling", true); // Set patrolling animation
-        animator.SetBool("isChasing", false); // Disable chasing animation
-        animator.SetBool("isAttacking", false); // Disable attacking animation
+        animator.SetBool("isChasing", false); // Disable chasing animation\
+        agent.speed = patrolSpeed;
+        if (chaseAudioSource.isPlaying)
+        {
+            chaseAudioSource.Stop(); 
+        }
+    
 
         if (agent.remainingDistance < 1f)
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
             agent.SetDestination(waypoints[currentWaypointIndex].position);
         }
+
     }
 
     private void ChasePlayer()
     {
         animator.SetBool("isPatrolling", false); // Disable patrolling animation
         animator.SetBool("isChasing", true); // Enable chasing animation
-        animator.SetBool("isAttacking", false); // Disable attacking animation
-
+        agent.speed = chaseSpeed;
         agent.SetDestination(player.position);
-    }
-
-    private void AttackPlayer()
-    {
-        animator.SetBool("isPatrolling", false); // Disable patrolling animation
-        animator.SetBool("isChasing", false); // Disable chasing animation
-        animator.SetBool("isAttacking", true); // Enable attacking animation
-
-        // Make sure enemy doesn't move
-        agent.SetDestination(transform.position);
-
-        transform.LookAt(player);
-
-        if (!alreadyAttacked)
+        if (!chaseAudioSource.isPlaying)
         {
-            // Attack code here
-            var spawnBullet = Instantiate(Bullet, SpawnPoint.position, SpawnPoint.rotation); // bullet parent => spawnPoint
-            spawnBullet.throwBullet = true;
-            // End of attack code
-
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            chaseAudioSource.Play(); 
         }
     }
 
-    private void ResetAttack()
+    private void OnTriggerEnter(Collider other)
     {
-        alreadyAttacked = false;
+        if (other.CompareTag("Player"))
+        {
+           other.gameObject.SetActive(false) ; // Set player inactive
+        }
     }
 }
