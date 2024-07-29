@@ -14,21 +14,22 @@ public class PlayerController : MonoBehaviour
     public PlayerInputSystem playerInputSystem;
     private InputAction MoveAction;
     private InputAction RunAction;
+    private InputAction DashAction;
+
     private Vector2 moveInput;
 
     [Header("Variables")]
     private float angleVelocity =0;
     [HideInInspector] public Vector3 playerControl;
+    [SerializeField] private Vector3 moveDir;
     [SerializeField] private float runSpeed, walkSpeed, currentSpeed, currentLookSpeed;
-    private bool IsRunning;
-
-
+    private bool IsRunning, IsDashing;
+    [SerializeField] private float currentDashCooldown =0.0f;
     private void Awake()
     {
         playerInputSystem = new PlayerInputSystem();
         rb = GetComponent<Rigidbody>();
         cam = Camera.main;
-
     }
     private void OnEnable()
     {
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
     {
         MoveAction = playerInputSystem.Player.Movement;
         RunAction = playerInputSystem.Player.Run;
+        DashAction = playerInputSystem.Player.Dash;
 
         MoveAction.performed += MovementInput;
         MoveAction.canceled += MovementInput;
@@ -57,14 +59,16 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         playerControl = new Vector3(moveInput.x, 0, moveInput.y).normalized;
-
         IsRunning = RunAction.IsPressed();
-        currentSpeed = IsRunning ? runSpeed : walkSpeed ;
         currentLookSpeed = IsRunning ? playerProfileSO.lookSpeed : playerProfileSO.lookSpeed * 2;
+        currentSpeed = IsRunning ? runSpeed : walkSpeed ;
+
+        DashReady();
     }
     private void FixedUpdate()
     {
         PlayerControl();
+        
     }
     private void PlayerControl()
     {
@@ -74,11 +78,41 @@ public class PlayerController : MonoBehaviour
         var smoothAngle = Mathf.SmoothDampAngle(transform.rotation.eulerAngles.y, angle, ref angleVelocity, currentLookSpeed);
         rb.rotation = Quaternion.Euler(0, smoothAngle, 0);
 
-        var moveDir = Quaternion.Euler(0, smoothAngle, 0) * Vector3.forward;
-        rb.MovePosition(transform.position + currentSpeed * Time.fixedDeltaTime * moveDir);
+        if (!IsDashing)
+        {
+            moveDir = Quaternion.Euler(0, smoothAngle, 0) * Vector3.forward;
+            rb.MovePosition(transform.position + currentSpeed * Time.fixedDeltaTime * moveDir);
+        }
     }
     private void MovementInput(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+    }
+    private void DashReady()
+    {
+        if(!playerProfileSO.CanDash) 
+            return ;
+
+        if (currentDashCooldown > 0.0f)
+        {
+            currentDashCooldown -= Time.fixedDeltaTime;
+            return ;
+        }
+        if (DashAction.triggered == true)
+        {
+            IsDashing = true;
+            currentDashCooldown = playerProfileSO.dashCooldown;
+            PlayerDash();
+        }
+    }
+    private void PlayerDash()
+    {
+        //rb.AddForce(transform.forward * playerProfileSO.dashSpeed,ForceMode.Impulse);
+        rb.MovePosition(transform.position + playerProfileSO.dashSpeed  * transform.forward);
+        Invoke(nameof(ResetPlayerDash), playerProfileSO.dashDuration);
+    }
+    private void ResetPlayerDash()
+    {
+        IsDashing = false;
     }
 }

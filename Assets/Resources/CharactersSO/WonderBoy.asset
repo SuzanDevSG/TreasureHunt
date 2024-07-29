@@ -19,4 +19,8 @@ MonoBehaviour:
   maxHealth: 100
   maxEnergy: 100
   lookSpeed: 0.1
-  skillId: 000000000100000002000000
+  dashCooldown: 2
+  dashDuration: 1
+  dashSpeed: 10
+  CanDash: 1
+  skillId: 

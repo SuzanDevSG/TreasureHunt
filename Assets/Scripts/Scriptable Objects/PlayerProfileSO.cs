@@ -9,6 +9,10 @@ public class PlayerProfileSO : ScriptableObject
 
     public float maxSpeed, maxHealth, maxEnergy;
     [Range(0,1)]public float lookSpeed =0f;
+
+    public float dashCooldown, dashDuration, dashSpeed;
+    public bool  CanDash = false;
+
     public int[] skillId;
 
 }
