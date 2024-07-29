@@ -917,6 +917,7 @@ GameObject:
   - component: {fileID: 410980}
   - component: {fileID: 9575536}
   - component: {fileID: 330702459428637545}
+  - component: {fileID: 5823958550295153972}
   m_Layer: 0
   m_Name: Old_chest
   m_TagString: Untagged
@@ -954,7 +955,7 @@ Animator:
   m_GameObject: {fileID: 187966}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2e99d3443353a344698601ca8f3aaeb9, type: 3}
-  m_Controller: {fileID: 9100000, guid: b7823c7a88a39a44dbfe1f3320296f79, type: 2}
+  m_Controller: {fileID: 9100000, guid: c117cdb48fbf7394a84622a7d53c0ed5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -980,12 +981,25 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5823958550295153972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 941a13f8cc0023e47aad8aa7521af355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chestAnimator: {fileID: 9575536}
 --- !u!1 &194088
 GameObject:
   m_ObjectHideFlags: 0
