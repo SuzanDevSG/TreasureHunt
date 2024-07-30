@@ -21,6 +21,9 @@ MonoBehaviour:
   lookSpeed: 0.1
   dashCooldown: 2
   dashDuration: 1
-  dashSpeed: 10
+  dashSpeed: 20
   CanDash: 1
+  InvisibleCooldown: 10
+  InvisibleDuration: 2
+  CanInvisible: 0
   skillId: 

@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,12 +11,14 @@ public class PlayerController : MonoBehaviour
     public PlayerProfileSO playerProfileSO;
     private Rigidbody rb;
     private Camera cam;
+    [SerializeField] private MeshRenderer playerMeshRenderer;
 
     [Header("PlayerInputActions")]
     public PlayerInputSystem playerInputSystem;
     private InputAction MoveAction;
     private InputAction RunAction;
     private InputAction DashAction;
+    private InputAction InvisibleAction;
 
     private Vector2 moveInput;
 
@@ -23,7 +27,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public Vector3 playerControl;
     [SerializeField] private Vector3 moveDir;
     [SerializeField] private float runSpeed, walkSpeed, currentSpeed, currentLookSpeed;
-    private bool IsRunning, IsDashing;
+    private bool IsRunning, IsDashing, IsInvisible;
     [SerializeField] private float currentDashCooldown =0.0f;
     private void Awake()
     {
@@ -38,12 +42,14 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         playerInputSystem.Disable();
+        StopAllCoroutines();
     }
     private void Start()
     {
         MoveAction = playerInputSystem.Player.Movement;
         RunAction = playerInputSystem.Player.Run;
         DashAction = playerInputSystem.Player.Dash;
+        InvisibleAction = playerInputSystem.Player.Invisible;
 
         MoveAction.performed += MovementInput;
         MoveAction.canceled += MovementInput;
@@ -64,7 +70,11 @@ public class PlayerController : MonoBehaviour
         currentSpeed = IsRunning ? runSpeed : walkSpeed ;
 
         DashReady();
+
+        Invisible();
     }
+
+
     private void FixedUpdate()
     {
         PlayerControl();
@@ -78,11 +88,13 @@ public class PlayerController : MonoBehaviour
         var smoothAngle = Mathf.SmoothDampAngle(transform.rotation.eulerAngles.y, angle, ref angleVelocity, currentLookSpeed);
         rb.rotation = Quaternion.Euler(0, smoothAngle, 0);
 
-        if (!IsDashing)
+        moveDir = Quaternion.Euler(0, smoothAngle, 0) * Vector3.forward;
+        if (IsDashing)
         {
-            moveDir = Quaternion.Euler(0, smoothAngle, 0) * Vector3.forward;
-            rb.MovePosition(transform.position + currentSpeed * Time.fixedDeltaTime * moveDir);
+            return;
         }
+        rb.MovePosition(transform.position + currentSpeed * Time.fixedDeltaTime * moveDir);
+        
     }
     private void MovementInput(InputAction.CallbackContext context)
     {
@@ -90,6 +102,7 @@ public class PlayerController : MonoBehaviour
     }
     private void DashReady()
     {
+        currentDashCooldown = Mathf.Clamp(currentDashCooldown, 0, playerProfileSO.dashCooldown);
         if(!playerProfileSO.CanDash) 
             return ;
 
@@ -107,12 +120,50 @@ public class PlayerController : MonoBehaviour
     }
     private void PlayerDash()
     {
-        //rb.AddForce(transform.forward * playerProfileSO.dashSpeed,ForceMode.Impulse);
-        rb.MovePosition(transform.position + playerProfileSO.dashSpeed  * transform.forward);
+        rb.AddForce(moveDir * playerProfileSO.dashSpeed,ForceMode.VelocityChange);
+        //rb.MovePosition(transform.position + playerProfileSO.dashSpeed  * transform.forward);
         Invoke(nameof(ResetPlayerDash), playerProfileSO.dashDuration);
     }
     private void ResetPlayerDash()
     {
         IsDashing = false;
     }
+
+
+    private IEnumerator InvisibleReady()
+    {
+        if (IsInvisible)
+        {
+            yield return new WaitForSeconds(playerProfileSO.InvisibleDuration);
+            IsInvisible = false;
+            yield return new WaitForSeconds(playerProfileSO.InvisibleCooldown);
+
+            playerProfileSO.CanInvisible = true;
+            Debug.Log("Player is Invisible");
+        }
+        else
+        {
+            Debug.Log("Player is visible");
+
+        }
+    }
+
+    private void Invisible()
+    {
+        if (!playerProfileSO.CanInvisible)
+        {
+
+            return;
+        }
+
+        if (!InvisibleAction.triggered)
+        {
+
+            return;
+        }
+        IsInvisible = true;
+        playerProfileSO.CanInvisible = false;
+        StartCoroutine(InvisibleReady());
+    }
+
 }

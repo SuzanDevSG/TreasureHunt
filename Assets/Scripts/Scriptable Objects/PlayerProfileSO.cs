@@ -11,7 +11,9 @@ public class PlayerProfileSO : ScriptableObject
     [Range(0,1)]public float lookSpeed =0f;
 
     public float dashCooldown, dashDuration, dashSpeed;
-    public bool  CanDash = false;
+    public bool CanDash = false;
+    public float InvisibleCooldown, InvisibleDuration;
+    public bool CanInvisible = false;
 
     public int[] skillId;
 

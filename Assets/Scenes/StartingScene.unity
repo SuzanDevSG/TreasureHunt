@@ -452,7 +452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1378209235
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -553,6 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerProfileSO: {fileID: 11400000, guid: dd26b3dbb72bb1944af74e10dbac978e, type: 2}
+  playerMeshRenderer: {fileID: 0}
   playerControl: {x: 0, y: 0, z: 0}
   moveDir: {x: 0, y: 0, z: 0}
   runSpeed: 0
@@ -597,11 +598,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 482012697155283213, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_FollowOffset.y
-      value: 3.151263
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 482012697155283213, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_FollowOffset.z
-      value: -4.963528
+      value: -5.18
       objectReference: {fileID: 0}
     - target: {fileID: 2320340277744426937, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -625,11 +626,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2320340277744426937, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000033010224
+      value: 0.000000011071966
       objectReference: {fileID: 0}
     - target: {fileID: 2320340277744426937, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000004533033
+      value: -0.0000000015204257
       objectReference: {fileID: 0}
     - target: {fileID: 2600344369954183102, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -649,15 +650,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2600344369954183102, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.16293178
+      value: 0.16293181
       objectReference: {fileID: 0}
     - target: {fileID: 2600344369954183102, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000006089789
+      value: -0.000000006089786
       objectReference: {fileID: 0}
     - target: {fileID: 2600344369954183102, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000001005658
+      value: 0.0000000010056582
       objectReference: {fileID: 0}
     - target: {fileID: 4467015327270972055, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -704,6 +705,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4902245768485246574, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4902245768485246574, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
@@ -717,19 +722,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4902245768485246574, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -8.728079e-10
       objectReference: {fileID: 0}
     - target: {fileID: 4902245768485246574, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 1.076717e-10
       objectReference: {fileID: 0}
     - target: {fileID: 5337868985334063046, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_FollowOffset.y
-      value: 3.151263
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5337868985334063046, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_FollowOffset.z
-      value: -4.963528
+      value: -5.18
       objectReference: {fileID: 0}
     - target: {fileID: 6171445802301948408, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_Follow
@@ -749,11 +754,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7618978158643395384, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_FollowOffset.y
-      value: 3.151263
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7618978158643395384, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_FollowOffset.z
-      value: -4.963528
+      value: -5.18
       objectReference: {fileID: 0}
     - target: {fileID: 8758941183862189600, guid: 885c6c0b69c96824f9c43f776ec9c57d, type: 3}
       propertyPath: m_Name
@@ -818,7 +823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5048369833644982122, guid: bc3df0f8eee9ce64ab4c3ba8258f5504, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -911,7 +916,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fcae199d23b63fa4eaafdd3533a096a7, type: 2}
+  - {fileID: 2945025726460819508, guid: a59f6548c14dfa84ba2ca07e21ce1543, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -932,7 +937,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -941,8 +946,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.07128525
-        value: 1
+        time: 0
+        value: 0.9901235
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -951,19 +956,19 @@ TrailRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0.27160466
-        inSlope: 0.81886905
-        outSlope: 0.81886905
+        value: 0.024691164
+        inSlope: 0
+        outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.3164102
+        inWeight: 0
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.7283019, g: 0.1635243, b: 0.1635243, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -988,7 +993,7 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -998,9 +1003,9 @@ TrailRenderer:
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
-  m_MinVertexDistance: 0.14
+  m_MinVertexDistance: 0.1
   m_MaskInteraction: 0
-  m_Autodestruct: 1
+  m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
 --- !u!1660057539 &9223372036854775807
