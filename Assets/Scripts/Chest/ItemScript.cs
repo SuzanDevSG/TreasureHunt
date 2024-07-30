@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class ChestScript : MonoBehaviour
+public class ItemScript : MonoBehaviour
 {
     public Animator animator;
-    private int chestId; // Unique ID for this chest
+    private int itemId; // Unique ID for this item
     private bool isPlayerNearby = false;
     private bool isOpen = false;
     private GameObject player;
@@ -13,11 +13,11 @@ public class ChestScript : MonoBehaviour
         // Make sure animator is assigned
         animator = GetComponent<Animator>();
 
-        // Check if the script is attached to the chest
-        ChestKeyInitializer initializer = GetComponentInParent<ChestKeyInitializer>();
+        // Check if the script is attached to the item
+        ItemKeyInitializer initializer = GetComponentInParent<ItemKeyInitializer>();
         if (initializer != null)
         {
-            chestId = initializer.chestId; // Get the ID from the initializer
+            itemId = initializer.itemId; // Get the ID from the initializer
         }
     }
 
@@ -41,23 +41,35 @@ public class ChestScript : MonoBehaviour
 
     void Update()
     {
-        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E) && !isOpen)
+        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
         {
             PlayerKey playerKey = player.GetComponent<PlayerKey>();
-            if (playerKey != null && playerKey.HasKey(chestId))
+            if (playerKey != null && playerKey.HasKey(itemId))
             {
-                OpenChest();
+                ToggleItem();
             }
         }
     }
 
-    void OpenChest()
+    void ToggleItem()
+    {
+        if (isOpen)
+        {
+            CloseItem();
+        }
+        else
+        {
+            OpenItem();
+        }
+    }
+
+    void OpenItem()
     {
         isOpen = true;
         animator.SetBool("isOpen", true);
     }
 
-    void CloseChest()
+    void CloseItem()
     {
         isOpen = false;
         animator.SetBool("isOpen", false);
