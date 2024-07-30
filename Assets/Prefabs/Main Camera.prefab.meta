@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-<<<<<<<< HEAD:Assets/Prefabs/Main Camera.prefab.meta
-guid: e1ad28f246e0a26419a9a00fd3da6e03
-========
-guid: bc3df0f8eee9ce64ab4c3ba8258f5504
->>>>>>>> df9f853716f5c0bbd1400dba5f5114fa7f5cd395:Assets/Prefabs/HumanMale_Character_Free.prefab.meta
-=======
 guid: aa714f5088010c549aeae534a0390da9
->>>>>>> df9f853716f5c0bbd1400dba5f5114fa7f5cd395
 PrefabImporter:
   externalObjects: {}
   userData: 

@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{9EF6ADB0-8B33-2CCB-7FFD-8A95FA5BAB9C}</ProjectGuid>
+    <ProjectGuid>{D6CFE750-7DEB-CDBB-8B20-1B8838184B38}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Meryel.CodeAssist.Editor</AssemblyName>

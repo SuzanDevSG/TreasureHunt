@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/AN Interactive Physical Door Pack/FBX/OpenDoor.FBX.meta
-guid: a359e6aee345f8e4da2ddae5b113c2d3
-ModelImporter:
-  serializedVersion: 19300
-========
 guid: 7144ca39c8def44479cb396ea320624a
 ModelImporter:
   serializedVersion: 19301
->>>>>>>> df9f853716f5c0bbd1400dba5f5114fa7f5cd395:Assets/Arts/Art/Characters/Stylized/Humans/Meshes_Humans/StylizedHumanMale_Eyebrow1.fbx.meta
   internalIDToNameTable: []
   externalObjects: {}
   materials:
@@ -40,7 +34,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 5
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -49,10 +43,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
-<<<<<<<< HEAD:Assets/AN Interactive Physical Door Pack/FBX/OpenDoor.FBX.meta
-========
     fileIdsGeneration: 2
->>>>>>>> df9f853716f5c0bbd1400dba5f5114fa7f5cd395:Assets/Arts/Art/Characters/Stylized/Humans/Meshes_Humans/StylizedHumanMale_Eyebrow1.fbx.meta
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -90,11 +81,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-<<<<<<<< HEAD:Assets/AN Interactive Physical Door Pack/FBX/OpenDoor.FBX.meta
-    globalScale: 0.0050000004
-========
     globalScale: 1
->>>>>>>> df9f853716f5c0bbd1400dba5f5114fa7f5cd395:Assets/Arts/Art/Characters/Stylized/Humans/Meshes_Humans/StylizedHumanMale_Eyebrow1.fbx.meta
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

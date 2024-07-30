@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/AN Interactive Physical Door Pack/FBX/CloseDoor.FBX.meta
 guid: 13c9b35bc80362b4f966b1102b10bde8
 ModelImporter:
   serializedVersion: 19300
-========
-guid: 2255221d850daf642981c1a4eedf85a1
-ModelImporter:
-  serializedVersion: 19301
->>>>>>>> df9f853716f5c0bbd1400dba5f5114fa7f5cd395:Assets/Arts/Art/Characters/Stylized/Humans/Meshes_Humans/HumanMale_Character.fbx.meta
   internalIDToNameTable: []
   externalObjects: {}
   materials:
@@ -49,10 +43,6 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
-<<<<<<<< HEAD:Assets/AN Interactive Physical Door Pack/FBX/CloseDoor.FBX.meta
-========
-    fileIdsGeneration: 2
->>>>>>>> df9f853716f5c0bbd1400dba5f5114fa7f5cd395:Assets/Arts/Art/Characters/Stylized/Humans/Meshes_Humans/HumanMale_Character.fbx.meta
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -99,11 +89,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-<<<<<<<< HEAD:Assets/AN Interactive Physical Door Pack/FBX/CloseDoor.FBX.meta
   avatarSetup: 0
-========
-  avatarSetup: 1
->>>>>>>> df9f853716f5c0bbd1400dba5f5114fa7f5cd395:Assets/Arts/Art/Characters/Stylized/Humans/Meshes_Humans/HumanMale_Character.fbx.meta
   additionalBone: 0
   userData: 
   assetBundleName: 
