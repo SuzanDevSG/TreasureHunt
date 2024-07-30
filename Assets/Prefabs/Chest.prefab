@@ -159,7 +159,6 @@ GameObject:
   - component: {fileID: 490090}
   - component: {fileID: 3326696}
   - component: {fileID: 2366276}
-  - component: {fileID: 9577700}
   m_Layer: 0
   m_Name: Lock_1
   m_TagString: Untagged
@@ -232,27 +231,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &9577700
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 115486}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6c7c52101fda1cf4d8eb5a7ee7789202, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &115552
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,7 +242,6 @@ GameObject:
   - component: {fileID: 448762}
   - component: {fileID: 3320716}
   - component: {fileID: 2386664}
-  - component: {fileID: 9506872}
   - component: {fileID: 2491614007749667619}
   m_Layer: 0
   m_Name: "\u0421over"
@@ -339,27 +316,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &9506872
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 115552}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6c7c52101fda1cf4d8eb5a7ee7789202, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!65 &2491614007749667619
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -474,7 +430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 451526}
   m_Layer: 0
-  m_Name: Chest
+  m_Name: Chest_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -674,7 +630,6 @@ GameObject:
   - component: {fileID: 483804}
   - component: {fileID: 3342414}
   - component: {fileID: 2390384}
-  - component: {fileID: 9504760}
   - component: {fileID: 878027121457563613}
   m_Layer: 0
   m_Name: Chest 1
@@ -748,27 +703,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &9504760
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169680}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b7823c7a88a39a44dbfe1f3320296f79, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!65 &878027121457563613
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -920,7 +854,7 @@ GameObject:
   - component: {fileID: 3511129507842126987}
   - component: {fileID: 8155496713952621694}
   m_Layer: 0
-  m_Name: Old_chest
+  m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1002,7 +936,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 9575536}
-  chestId: 0
 --- !u!114 &8155496713952621694
 MonoBehaviour:
   m_ObjectHideFlags: 0
