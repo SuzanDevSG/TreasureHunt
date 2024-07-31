@@ -21,6 +21,7 @@ public class PatrollingEnemy : MonoBehaviour
     [SerializeField] private float chaseRange = 15f; // Chase range for the enemy
     [SerializeField] private float chaseSpeed;
     [SerializeField] private float patrolSpeed;
+    [SerializeField] private float catchingRange = 2f; // Define the catching range
     [SerializeField] private AudioSource chaseAudioSource;
 
     private void Awake()
@@ -49,7 +50,7 @@ public class PatrollingEnemy : MonoBehaviour
         {
             ChasePlayer();
         }
-        else if (!playerInSightRange && playerInChaseRange)
+        else if (!playerInSightRange && !playerInChaseRange)
         {
             Patrol();
         }
@@ -89,20 +90,18 @@ public class PatrollingEnemy : MonoBehaviour
             return;
 
         animator.SetBool("isPatrolling", true); // Set patrolling animation
-        animator.SetBool("isChasing", false); // Disable chasing animation\
+        animator.SetBool("isChasing", false); // Disable chasing animation
         agent.speed = patrolSpeed;
         if (chaseAudioSource.isPlaying)
         {
-            chaseAudioSource.Stop(); 
+            chaseAudioSource.Stop();
         }
-    
 
         if (agent.remainingDistance < 1f)
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
             agent.SetDestination(waypoints[currentWaypointIndex].position);
         }
-
     }
 
     private void ChasePlayer()
@@ -113,15 +112,41 @@ public class PatrollingEnemy : MonoBehaviour
         agent.SetDestination(player.position);
         if (!chaseAudioSource.isPlaying)
         {
-            chaseAudioSource.Play(); 
+            chaseAudioSource.Play();
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-           other.gameObject.SetActive(false) ; // Set player inactive
+            Debug.Log("Enemy collided with player");
+            float distanceToPlayer = Vector3.Distance(transform.position, other.transform.position);
+            if (distanceToPlayer <= catchingRange)
+            {
+                Debug.Log("Player within catching range");
+                CatchPlayer(other.gameObject);
+            }
         }
+    }
+    private void CatchPlayer(GameObject player)
+    {
+        // Trigger your game logic here
+        // For example, disable the player and show a "Game Over" screen
+
+        player.SetActive(false); // Set player inactive
+        agent.speed = 0; // Stop the enemy movement
+
+        // Stop the animations
+        animator.SetBool("isPatrolling", false);
+        animator.SetBool("isChasing", false);
+
+        // Optionally stop the chase audio
+        if (chaseAudioSource.isPlaying)
+        {
+            chaseAudioSource.Stop();
+        }
+
+        // Add additional logic here, like triggering a game over screen or restarting the level
+        Debug.Log("Player caught and set inactive! Enemy movement stopped.");
     }
 }
