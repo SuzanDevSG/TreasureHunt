@@ -2813,6 +2813,7 @@ GameObject:
   - component: {fileID: 8194559624062057948}
   - component: {fileID: 8789747998081978899}
   - component: {fileID: 4902947012346189268}
+  - component: {fileID: 456773651921016387}
   m_Layer: 3
   m_Name: HumanMale_Character_Free
   m_TagString: Player
@@ -2905,8 +2906,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 0.89148325, y: 1.8577415, z: 1}
+  m_Center: {x: 0.0029024184, y: 0.9251688, z: 0}
 --- !u!114 &8789747998081978899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2937,6 +2938,18 @@ MonoBehaviour:
   walkSpeed: 0
   currentSpeed: 0
   currentLookSpeed: 0
+--- !u!114 &456773651921016387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5048369833644982122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee736ca278b38454c8853acbe5eec4f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5169788399460207419
 GameObject:
   m_ObjectHideFlags: 0
