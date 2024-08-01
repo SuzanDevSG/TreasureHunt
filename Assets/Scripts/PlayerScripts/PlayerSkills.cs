@@ -1,21 +1,30 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSkills : MonoBehaviour
 {
     [SerializeField] private PlayerSkillsSO playerSkillsSO;
     [SerializeField] private PlayerController playerController;
-    [SerializeField] private Material[] playerMat;
+    [SerializeField] private List<Material> playerMat;
     private Rigidbody rb;
 
     [SerializeField] private float currentDashCooldown;
-    [Range(0,255)][SerializeField] private float defaultAlphaValue = 255;
+    [Range(0,255)][SerializeField] private float defaultAlphaValue = 1;
     private bool IsDashing, IsInvisible;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        var playerRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        playerMat = new List<Material>();
+        foreach (var item in playerRenderers)
+        {
+            playerMat.Add(item.material);
+        }
+
     }
 
     private void Update()
@@ -59,20 +68,25 @@ public class PlayerSkills : MonoBehaviour
 
     private IEnumerator InvisibleReady()
     {
+        Debug.Log("Invisible coroutine called ");
         if (IsInvisible)
         {
+            Debug.Log("Invisible Started");
             Color changeColor = new Color();
             foreach (var item in playerMat)
             {
                 changeColor = item.color;
-                changeColor.a = defaultAlphaValue / 2;
+                changeColor.a = 0f;
 
-                item.SetFloat("_Mode", 1.0f);
+                item.SetFloat("_Mode", 3.0f);
+                item.renderQueue = 3000;
                 item.color = changeColor;
                 Debug.Log("AlpaChanged " + item.color);
             }
+            Debug.Log("Player is Invisible");
 
             yield return new WaitForSeconds(playerSkillsSO.InvisibleDuration);
+/*
             foreach (var item in playerMat)
             {
                 changeColor = item.color;
@@ -81,24 +95,23 @@ public class PlayerSkills : MonoBehaviour
                 item.SetFloat("_Mode", 0.0f);
                 item.color = changeColor;
             }
+            Debug.Log("Player is visible");
+
 
             IsInvisible = false;
             yield return new WaitForSeconds(playerSkillsSO.InvisibleCooldown);
 
-            playerSkillsSO.CanInvisible = true;
-            Debug.Log("Player is Invisible");
+            playerSkillsSO.CanInvisible = true;*/
         }
-        else
-        {
-            Debug.Log("Player is visible");
 
-        }
     }
 
     private void Invisible()
     {
+
         if (!playerSkillsSO.CanInvisible)
         {
+            Debug.Log("No Skill to Use"+ playerSkillsSO.CanInvisible);
             return;
         }
 
@@ -106,8 +119,9 @@ public class PlayerSkills : MonoBehaviour
         {
             return;
         }
+        Debug.Log("Triggered E");
         IsInvisible = true;
-        playerSkillsSO.CanInvisible = false;
+        playerSkillsSO.CanInvisible = true;
         StartCoroutine(InvisibleReady());
     }
 

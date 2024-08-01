@@ -2959,6 +2959,7 @@ GameObject:
   - component: {fileID: 8789747998081978899}
   - component: {fileID: 4902947012346189268}
   - component: {fileID: 456773651921016387}
+  - component: {fileID: 1761553147635327873}
   m_Layer: 3
   m_Name: HumanMale_Character_Free
   m_TagString: Player
@@ -3080,6 +3081,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerProfileSO: {fileID: 11400000, guid: dd26b3dbb72bb1944af74e10dbac978e, type: 2}
   playerMeshRenderer: {fileID: 0}
+  DashAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c92337b5-c980-4312-9ed2-9ae0237c79a2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  InvisibleAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2afb9afb-e784-4c7a-8cd5-3df866e60944
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   playerControl: {x: 0, y: 0, z: 0}
   moveDir: {x: 0, y: 0, z: 0}
   runSpeed: 0
@@ -3098,7 +3117,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee736ca278b38454c8853acbe5eec4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1761553147635327873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5048369833644982122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d95ff7fd2564814284f51f990f5945a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSkillsSO: {fileID: 11400000, guid: 91c79000dbb87ef408eef9525bfd98ea, type: 2}
+  playerController: {fileID: 4902947012346189268}
+  playerMat: []
   currentDashCooldown: 0
+  defaultAlphaValue: 255
 --- !u!1 &5169788399460207419
 GameObject:
   m_ObjectHideFlags: 0

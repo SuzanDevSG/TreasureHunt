@@ -16,6 +16,6 @@ MonoBehaviour:
   dashCooldown: 2
   dashDuration: 0.5
   dashSpeed: 20
-  CanInvisible: 0
-  InvisibleCooldown: 5
-  InvisibleDuration: 1
+  CanInvisible: 1
+  InvisibleCooldown: 2
+  InvisibleDuration: 5
