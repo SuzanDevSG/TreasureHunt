@@ -9,21 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f2d09a80d486dc4d8220a133410349e, type: 3}
-  m_Name: WonderBoy
+  m_Script: {fileID: 11500000, guid: 039a5a4c0122aa2469c10c14f9cefaa2, type: 3}
+  m_Name: WonderBoySkills
   m_EditorClassIdentifier: 
-  id: 1
-  characterName: ASSASSIN
-  characterDescription: 
-  maxSpeed: 2.5
-  maxHealth: 100
-  maxEnergy: 100
-  lookSpeed: 0.1
+  CanDash: 1
   dashCooldown: 2
   dashDuration: 0.5
   dashSpeed: 20
-  CanDash: 1
-  InvisibleCooldown: 10
-  InvisibleDuration: 2
   CanInvisible: 0
-  skillId: 
+  InvisibleCooldown: 5
+  InvisibleDuration: 1
