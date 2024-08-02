@@ -1,6 +1,3 @@
-using System;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +7,6 @@ public class PlayerController : MonoBehaviour
     public PlayerProfileSO playerProfileSO;
     private Rigidbody rb;
     private Camera cam;
-    [SerializeField] private MeshRenderer playerMeshRenderer;
 
     [Header("PlayerInputActions")]
     public PlayerInputSystem playerInputSystem;
@@ -26,7 +22,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public Vector3 playerControl;
     [HideInInspector] public Vector3 moveDir;
     [SerializeField] private float runSpeed, walkSpeed, currentSpeed, currentLookSpeed;
-    private bool IsRunning;
+    public bool IsRunning;
     private void Awake()
     {
         playerInputSystem = new PlayerInputSystem();
