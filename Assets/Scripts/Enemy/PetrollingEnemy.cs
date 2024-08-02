@@ -25,9 +25,16 @@ public class PatrollingEnemy : MonoBehaviour
     [SerializeField] private AudioSource chaseAudioSource;
     public GameOverManager gameOverManager;
 
+    private bool isChasingPlayer = false;
+    private bool isGameOver = false; // Add this line
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        if (chaseAudioSource == null)
+        {
+            Debug.LogError("chaseAudioSource is not assigned in the inspector");
+        }
     }
 
     void Start()
@@ -40,25 +47,40 @@ public class PatrollingEnemy : MonoBehaviour
 
     void Update()
     {
+        if (isGameOver) return; // Add this line to prevent further updates if the game is over
+
         playerInSightRange = CheckPlayerInSightRange();
         playerInChaseRange = CheckPlayerInChaseRange();
 
-        if (!playerInSightRange && !playerInChaseRange)
+        if (!isChasingPlayer)
         {
-            Patrol();
+            if (playerInSightRange && playerInChaseRange)
+            {
+                isChasingPlayer = true;
+                ChasePlayer();
+            }
+            else
+            {
+                Patrol();
+            }
         }
-        else if (playerInSightRange && playerInChaseRange)
+        else
         {
-            ChasePlayer();
-        }
-        else if (!playerInSightRange && !playerInChaseRange)
-        {
-            Patrol();
+            if (playerInChaseRange)
+            {
+                ChasePlayer();
+            }
+            else
+            {
+                isChasingPlayer = false;
+                Patrol();
+            }
         }
     }
 
     private bool CheckPlayerInSightRange()
     {
+        // Create a sphere around the enemy to detect players within sight range
         Collider[] hits = Physics.OverlapSphere(transform.position, enemyData.sightRange, enemyData.WhatIsPlayer);
         foreach (var hit in hits)
         {
@@ -66,11 +88,11 @@ public class PatrollingEnemy : MonoBehaviour
             Vector3 directionToPlayer = (target.position - transform.position).normalized;
             float distanceToPlayer = Vector3.Distance(transform.position, target.position);
 
-            // Check if the player is within the field of view
+            // Check if the player is within the field of view cone
             float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
             if (angleToPlayer < fieldOfViewAngle * 0.5f)
             {
-                // Perform raycast and check for obstacles
+                // Perform a raycast to check for obstacles between the enemy and the player
                 if (!Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, enemyData.ObstacleMask))
                 {
                     return true;
@@ -95,6 +117,7 @@ public class PatrollingEnemy : MonoBehaviour
         agent.speed = patrolSpeed;
         if (chaseAudioSource.isPlaying)
         {
+            Debug.Log("Stopping chase audio during patrol");
             chaseAudioSource.Stop();
         }
 
@@ -107,15 +130,19 @@ public class PatrollingEnemy : MonoBehaviour
 
     private void ChasePlayer()
     {
+        if (isGameOver) return; // Add this line to prevent chasing if the game is over
+
         animator.SetBool("isPatrolling", false); // Disable patrolling animation
         animator.SetBool("isChasing", true); // Enable chasing animation
         agent.speed = chaseSpeed;
         agent.SetDestination(player.position);
         if (!chaseAudioSource.isPlaying)
         {
+            Debug.Log("Starting chase audio");
             chaseAudioSource.Play();
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -129,10 +156,17 @@ public class PatrollingEnemy : MonoBehaviour
             }
         }
     }
+
     private void CatchPlayer(GameObject player)
     {
-        // Trigger your game logic here
-        // For example, disable the player and show a "Game Over" screen
+        Debug.Log("Catching player");
+        isGameOver = true; // Add this line to mark the game as over
+
+        if (chaseAudioSource.isPlaying)
+        {
+            Debug.Log("Stopping chase audio");
+            chaseAudioSource.Stop();
+        }
 
         player.SetActive(false); // Set player inactive
         agent.speed = 0; // Stop the enemy movement
@@ -141,11 +175,6 @@ public class PatrollingEnemy : MonoBehaviour
         animator.SetBool("isPatrolling", false);
         animator.SetBool("isChasing", false);
 
-       
-        if (chaseAudioSource.isPlaying)
-        {
-            chaseAudioSource.Stop();
-        }
         gameOverManager.ShowGameOver();
 
         Debug.Log("Player caught and set inactive! Enemy movement stopped.");

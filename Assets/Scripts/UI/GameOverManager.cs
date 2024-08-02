@@ -17,14 +17,10 @@ public class GameOverManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    // Quit the game
-    public void QuitGame()
+    public void LoadMainMenu()
     {
-        // If running in the editor
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+        // Replace "MainMenu" with the name of your main menu scene
+        SceneManager.LoadScene("UI");
     }
+
 }
