@@ -104,6 +104,7 @@
     <Compile Include="Assets\Scripts\Chest\PlayerKey.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\PlayerProfileSO.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
+    <Compile Include="Assets\Scripts\UI\GameOverManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\AN Interactive Physical Door Pack\Scripts\AN_HeroController.cs" />
     <Compile Include="Assets\Scripts\Chest\ItemKeyInitializer.cs" />

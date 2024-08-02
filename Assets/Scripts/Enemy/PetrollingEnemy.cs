@@ -23,6 +23,7 @@ public class PatrollingEnemy : MonoBehaviour
     [SerializeField] private float patrolSpeed;
     [SerializeField] private float catchingRange = 2f; // Define the catching range
     [SerializeField] private AudioSource chaseAudioSource;
+    public GameOverManager gameOverManager;
 
     private void Awake()
     {
@@ -140,13 +141,13 @@ public class PatrollingEnemy : MonoBehaviour
         animator.SetBool("isPatrolling", false);
         animator.SetBool("isChasing", false);
 
-        // Optionally stop the chase audio
+       
         if (chaseAudioSource.isPlaying)
         {
             chaseAudioSource.Stop();
         }
+        gameOverManager.ShowGameOver();
 
-        // Add additional logic here, like triggering a game over screen or restarting the level
         Debug.Log("Player caught and set inactive! Enemy movement stopped.");
     }
 }
