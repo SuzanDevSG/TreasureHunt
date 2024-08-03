@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Chest\ItemScript.cs" />
     <Compile Include="Assets\Scripts\Chest\PlayerKey.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\PlayerProfileSO.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\MaterialUtils.cs" />
     <Compile Include="Assets\AN Interactive Physical Door Pack\Scripts\AN_HeroController.cs" />
     <Compile Include="Assets\Scripts\Chest\ItemKeyInitializer.cs" />
     <Compile Include="Assets\AN Interactive Physical Door Pack\Scripts\AN_HeroInteractive.cs" />

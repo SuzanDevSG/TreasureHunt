@@ -3080,7 +3080,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerProfileSO: {fileID: 11400000, guid: dd26b3dbb72bb1944af74e10dbac978e, type: 2}
-  playerMeshRenderer: {fileID: 0}
   DashAction:
     m_Name: 
     m_Type: 0
@@ -3103,8 +3102,12 @@ MonoBehaviour:
   moveDir: {x: 0, y: 0, z: 0}
   runSpeed: 0
   walkSpeed: 0
-  currentSpeed: 0
+  maxSpeed: 0
   currentLookSpeed: 0
+  IsRunning: 0
+  Dashing: 0
+  smoothSpeed: 0
+  currentSpeedFactor: 0
 --- !u!114 &456773651921016387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3132,8 +3135,6 @@ MonoBehaviour:
   playerSkillsSO: {fileID: 11400000, guid: 91c79000dbb87ef408eef9525bfd98ea, type: 2}
   playerController: {fileID: 4902947012346189268}
   playerMat: []
-  currentDashCooldown: 0
-  defaultAlphaValue: 255
 --- !u!1 &5169788399460207419
 GameObject:
   m_ObjectHideFlags: 0
@@ -3602,7 +3603,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6187122281561512746
 Transform:
   m_ObjectHideFlags: 0
