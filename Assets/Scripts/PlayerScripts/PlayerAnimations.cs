@@ -1,34 +1,30 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+using Unity.Properties;
+using UnityEditor.U2D;
 using UnityEngine;
 
 public class PlayerAnimations : MonoBehaviour
 {
     private PlayerController playerController;
     private Animator animator;
-    private float speed = 0.00f;
-    private Vector3 initialPosition;
+    private float playerSpeed;
+
     void Start()
     {
         playerController = GetComponent<PlayerController>();
         animator = GetComponent<Animator>();
-        initialPosition = transform.position;
     }
 
-    private void Update()
+
+    void Update()
     {
+        playerSpeed = playerController.smoothSpeed;
         MovementAnimations();
     }
-    void FixedUpdate()
-    {
-        
-        speed = Vector3.Distance(initialPosition,transform.position) / Time.fixedDeltaTime;
-        initialPosition = transform.position;
-        
-    }
+
+
     private void MovementAnimations()
     {
-        animator.SetFloat("Speed", speed);
+        animator.SetFloat("Speed", playerSpeed);
     }
 }

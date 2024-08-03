@@ -65,6 +65,7 @@
     <Compile Include="Assets\AN Interactive Physical Door Pack\Scripts\AN_PlugScript.cs" />
     <Compile Include="Assets\Scripts\Enemy\PetrollingEnemy.cs" />
     <Compile Include="Assets\Scripts\Chest\KeyScript.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\PlayerSkills.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerAnimations.cs" />
     <Compile Include="Assets\Scripts\Enemy\Player\Health.cs" />
     <Compile Include="Assets\Scripts\Chest\UniqueIDGenerator.cs" />
@@ -72,10 +73,12 @@
     <Compile Include="Assets\Scripts\Chest\ItemScript.cs" />
     <Compile Include="Assets\Scripts\Chest\PlayerKey.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\PlayerProfileSO.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\MaterialUtils.cs" />
     <Compile Include="Assets\AN Interactive Physical Door Pack\Scripts\AN_HeroController.cs" />
     <Compile Include="Assets\Scripts\Chest\ItemKeyInitializer.cs" />
     <Compile Include="Assets\AN Interactive Physical Door Pack\Scripts\AN_HeroInteractive.cs" />
     <Compile Include="Assets\AN Interactive Physical Door Pack\Scripts\AN_DoorKey.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\PlayerSkillsSO.cs" />
     <Compile Include="Assets\AN Interactive Physical Door Pack\Scripts\AN_Button.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerController.cs" />
   </ItemGroup>
