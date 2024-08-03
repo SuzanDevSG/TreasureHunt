@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PatrollingEnemy : MonoBehaviour
+public class PetrollingEnemy : MonoBehaviour
 {
     public NavMeshAgent agent;
     public Transform player;
@@ -22,11 +22,12 @@ public class PatrollingEnemy : MonoBehaviour
     [SerializeField] private float chaseSpeed;
     [SerializeField] private float patrolSpeed;
     [SerializeField] private float catchingRange = 2f; // Define the catching range
-    [SerializeField] private AudioSource chaseAudioSource;
+    [SerializeField] public AudioSource chaseAudioSource;
     public GameOverManager gameOverManager;
 
-    private bool isChasingPlayer = false;
-    private bool isGameOver = false; 
+    public static bool isChasingPlayer = false;
+    public bool isGameOver = false;
+    public bool pauseMenu;
 
     private void Awake()
     {
@@ -43,6 +44,7 @@ public class PatrollingEnemy : MonoBehaviour
         {
             agent.SetDestination(waypoints[currentWaypointIndex].position);
         }
+        isGameOver = false;
     }
 
     void Update()
@@ -54,7 +56,7 @@ public class PatrollingEnemy : MonoBehaviour
 
         if (!isChasingPlayer)
         {
-            if (playerInSightRange && playerInChaseRange)
+            if (playerInSightRange)
             {
                 isChasingPlayer = true;
                 ChasePlayer();
@@ -76,6 +78,16 @@ public class PatrollingEnemy : MonoBehaviour
                 Patrol();
             }
         }
+       if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseMenu=!pauseMenu;
+
+        }
+    }
+    public void ChangePauseMenu()
+    {
+        pauseMenu = !pauseMenu;
+
     }
 
     private bool CheckPlayerInSightRange()
@@ -93,7 +105,7 @@ public class PatrollingEnemy : MonoBehaviour
             if (angleToPlayer < fieldOfViewAngle * 0.5f)
             {
                 // Perform a raycast to check for obstacles between the enemy and the player
-                if (!Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, enemyData.ObstacleMask))
+                if (!Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, enemyData.ObstacleMask )&& !PlayerSkills.IsInvisible)
                 {
                     return true;
                 }
@@ -136,7 +148,7 @@ public class PatrollingEnemy : MonoBehaviour
         animator.SetBool("isChasing", true); // Enable chasing animation
         agent.speed = chaseSpeed;
         agent.SetDestination(player.position);
-        if (!chaseAudioSource.isPlaying)
+        if (!pauseMenu && !chaseAudioSource.isPlaying)
         {
             Debug.Log("Starting chase audio");
             chaseAudioSource.Play();

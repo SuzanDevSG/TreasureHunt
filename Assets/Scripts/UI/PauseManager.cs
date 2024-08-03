@@ -11,29 +11,35 @@ public class PauseManager : MonoBehaviour
     public Button resumeButton;
     public Button exitButton;
     private bool isPaused = false;
-    
-
+    public Slider volumeSlider;
+    [SerializeField] private PetrollingEnemy petrollingEnemy;
     void Start()
     {
         pauseMenuUI.SetActive(false);
 
         resumeButton.onClick.AddListener(Resume);
         exitButton.onClick.AddListener(ExitToMainMenu);
+        volumeSlider.onValueChanged.AddListener(AdjustVolume);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            
-            if (isPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+        if ( petrollingEnemy.pauseMenu && !petrollingEnemy.isGameOver)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Pause();
 
+        }
+        if(!petrollingEnemy.pauseMenu & !petrollingEnemy.isGameOver)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Resume();
+        }
+            
+            
+           
+        
+            
     }
 
     public void Resume()
@@ -41,6 +47,7 @@ public class PauseManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+      
     }
 
     void Pause()
@@ -48,12 +55,19 @@ public class PauseManager : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f; 
         isPaused = true;
+        petrollingEnemy.chaseAudioSource.Stop();
+       
     }
 
     void ExitToMainMenu()
     {
         Time.timeScale = 1f; 
         SceneManager.LoadScene("ui");
+    }
+    void AdjustVolume(float volume)
+    {
+        AudioListener.volume = volume;
+
     }
 }
 

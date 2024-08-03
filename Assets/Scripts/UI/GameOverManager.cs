@@ -5,6 +5,7 @@ public class GameOverManager : MonoBehaviour
 {
     public GameObject gameOverUI; // Reference to the Game Over UI panel
 
+
     // Show the Game Over UI
     public void ShowGameOver()
     {
