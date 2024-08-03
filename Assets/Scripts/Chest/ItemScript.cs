@@ -41,7 +41,7 @@ public class ItemScript : MonoBehaviour
 
     void Update()
     {
-        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerNearby && Input.GetKeyDown(KeyCode.F))
         {
             PlayerKey playerKey = player.GetComponent<PlayerKey>();
             if (playerKey != null && playerKey.HasKey(itemId))
