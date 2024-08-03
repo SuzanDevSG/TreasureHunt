@@ -12,6 +12,7 @@ public class GameOverManager : MonoBehaviour
         gameOverUI.SetActive(true);
         Debug.Log("GameOver Show");
         Time.timeScale = 0f;
+        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
 
@@ -25,7 +26,7 @@ public class GameOverManager : MonoBehaviour
     public void LoadMainMenu()
     {
         // Replace "MainMenu" with the name of your main menu scene
-        SceneManager.LoadScene("UI");
+        SceneManager.LoadScene("MainMenu");
     }
 
 }

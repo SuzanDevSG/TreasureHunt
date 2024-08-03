@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4548946201545805641}
   - component: {fileID: 6177835477618534084}
   - component: {fileID: 1407123020739294608}
+  - component: {fileID: 964604526296777332}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -108,6 +109,27 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.3826308, y: 0.12306504, z: 2.3121815}
+  m_Center: {x: -0.6460866, y: 0.025042713, z: 1.1560907}
+--- !u!65 &964604526296777332
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664541481974440276}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.71, y: 1.03, z: 2.3121815}
   m_Center: {x: -0.6460866, y: 0.025042713, z: 1.1560907}
 --- !u!1 &2126388826586471675
 GameObject:
@@ -429,6 +451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1284442956247400700}
+  isOpen: 0
 --- !u!114 &7729103609929974204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,4 +465,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyPrefab: {fileID: 3160607714986282049}
-  chestId: 0
+  itemId: 0

@@ -3,9 +3,10 @@ using UnityEngine;
 public class ItemScript : MonoBehaviour
 {
     public Animator animator;
+
     private int itemId; // Unique ID for this item
     private bool isPlayerNearby = false;
-    private bool isOpen = false;
+    [HideInInspector] public bool isOpen = false;
     private GameObject player;
 
     void Start()
@@ -25,6 +26,7 @@ public class ItemScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+
             isPlayerNearby = true;
             player = other.gameObject;
         }

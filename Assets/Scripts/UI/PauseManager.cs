@@ -8,11 +8,12 @@ using UnityEngine.UI;
 public class PauseManager : MonoBehaviour
 {
     public GameObject pauseMenuUI;
+    public GameObject HUD;
     public Button resumeButton;
     public Button exitButton;
-    private bool isPaused = false;
+    private bool IsPaused = false;
     public Slider volumeSlider;
-    [SerializeField] private PetrollingEnemy petrollingEnemy;
+    [SerializeField] private PlayerController playerController;
     void Start()
     {
         pauseMenuUI.SetActive(false);
@@ -24,45 +25,48 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
-        if ( petrollingEnemy.pauseMenu && !petrollingEnemy.isGameOver)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Pause();
+        playerController.pauseMenu = IsPaused;
 
-        }
-        if(!petrollingEnemy.pauseMenu & !petrollingEnemy.isGameOver)
+        if (playerController.PauseAction.triggered && !playerController.IsGameOver)
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            Pause();
+        }
+        if (playerController.PauseAction.triggered && !playerController.IsGameOver && !IsPaused)
+        {
             Resume();
         }
-            
-            
-           
-        
-            
     }
 
     public void Resume()
     {
+        HUD.SetActive(true);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        if (playerController.IsbeingChased)
+        {
+            playerController.PlayingAudio();
+        }
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        isPaused = false;
-      
+        IsPaused = false;
     }
 
     void Pause()
     {
+        HUD.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f; 
-        isPaused = true;
-        petrollingEnemy.chaseAudioSource.Stop();
+        IsPaused = !IsPaused;
        
     }
 
     void ExitToMainMenu()
     {
         Time.timeScale = 1f; 
-        SceneManager.LoadScene("ui");
+        SceneManager.LoadScene("MainMenu");
     }
     void AdjustVolume(float volume)
     {

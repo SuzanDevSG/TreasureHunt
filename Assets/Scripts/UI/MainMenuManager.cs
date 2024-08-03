@@ -19,7 +19,12 @@ public class MainMenuManager : MonoBehaviour
     // Update is called once per frame
     void QuitGame()
     {
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    #elif UNITY_STANDALONE
         Application.Quit();
+    #endif
+ 
         Debug.Log("Quit Game");
     }
     void AdjustVolume(float volume)

@@ -22,20 +22,14 @@ public class PetrollingEnemy : MonoBehaviour
     [SerializeField] private float chaseSpeed;
     [SerializeField] private float patrolSpeed;
     [SerializeField] private float catchingRange = 2f; // Define the catching range
-    [SerializeField] public AudioSource chaseAudioSource;
     public GameOverManager gameOverManager;
 
     public static bool isChasingPlayer = false;
-    public bool isGameOver = false;
-    public bool pauseMenu;
+    public static bool isGameOver = false;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        if (chaseAudioSource == null)
-        {
-            Debug.LogError("chaseAudioSource is not assigned in the inspector");
-        }
     }
 
     void Start()
@@ -78,17 +72,9 @@ public class PetrollingEnemy : MonoBehaviour
                 Patrol();
             }
         }
-       if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            pauseMenu=!pauseMenu;
-
-        }
-    }
-    public void ChangePauseMenu()
-    {
-        pauseMenu = !pauseMenu;
 
     }
+
 
     private bool CheckPlayerInSightRange()
     {
@@ -127,12 +113,6 @@ public class PetrollingEnemy : MonoBehaviour
         animator.SetBool("isPatrolling", true); // Set patrolling animation
         animator.SetBool("isChasing", false); // Disable chasing animation
         agent.speed = patrolSpeed;
-        if (chaseAudioSource.isPlaying)
-        {
-            Debug.Log("Stopping chase audio during patrol");
-            chaseAudioSource.Stop();
-        }
-
         if (agent.remainingDistance < 1f)
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
@@ -148,11 +128,6 @@ public class PetrollingEnemy : MonoBehaviour
         animator.SetBool("isChasing", true); // Enable chasing animation
         agent.speed = chaseSpeed;
         agent.SetDestination(player.position);
-        if (!pauseMenu && !chaseAudioSource.isPlaying)
-        {
-            Debug.Log("Starting chase audio");
-            chaseAudioSource.Play();
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -174,11 +149,7 @@ public class PetrollingEnemy : MonoBehaviour
         Debug.Log("Catching player");
         isGameOver = true; 
 
-        if (chaseAudioSource.isPlaying)
-        {
-            Debug.Log("Stopping chase audio");
-            chaseAudioSource.Stop();
-        }
+        
 
         player.SetActive(false); // Set player inactive
         agent.speed = 0; // Stop the enemy movement

@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private InputAction RunAction;
     [HideInInspector] public InputAction DashAction;
     [HideInInspector] public InputAction InvisibleAction;
+    [HideInInspector] public InputAction PauseAction;
 
     private Vector2 moveInput;
 
@@ -32,10 +35,23 @@ public class PlayerController : MonoBehaviour
     private float defualtSpeedFactor = 3;
     [SerializeField] private float currentSpeedFactor;
 
+    [Header("Enemy")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip chaseClip;
+    public bool IsbeingChased;
+    public bool IsGameOver;
+    public bool pauseMenu;
+    private bool IsPlayingAudio;
+
     private void Awake()
     {
+        Time.timeScale = 1;
         playerInputSystem = new PlayerInputSystem();
         rb = GetComponent<Rigidbody>();
+        if(audioSource == null)
+        {
+        audioSource = GetComponent<AudioSource>();
+        }
         cam = Camera.main;
     }
     private void OnEnable()
@@ -56,14 +72,13 @@ public class PlayerController : MonoBehaviour
         RunAction = playerInputSystem.Player.Run;
         DashAction = playerInputSystem.Player.Dash;
         InvisibleAction = playerInputSystem.Player.Invisible;
+        PauseAction = playerInputSystem.Player.Pause;
 
         MoveAction.performed += MovementInput;
         MoveAction.canceled += MovementInput;
 
         walkSpeed = playerProfileSO.maxSpeed;
         runSpeed = playerProfileSO.maxSpeed * 2;
-
-
     }
     private void OnDestroy()
     {
@@ -79,8 +94,48 @@ public class PlayerController : MonoBehaviour
         currentSpeedFactor = IsRunning ? defualtSpeedFactor * 2 +4 : defualtSpeedFactor;
         SmoothSpeedCondition();
 
+        CheckEnemyStatus();
     }
 
+    private void CheckEnemyStatus()
+    {
+        IsbeingChased = PetrollingEnemy.isChasingPlayer;
+        IsGameOver = PetrollingEnemy.isGameOver;
+
+        if (pauseMenu)
+        {
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+        }
+
+        if (IsbeingChased && !IsPlayingAudio)
+        {
+            PlayingAudio();
+        }
+        if (!IsbeingChased)
+        {
+            IsPlayingAudio = false;
+            if (audioSource.isPlaying)
+            {
+                
+                audioSource.Stop();
+            }
+        }
+
+        if (IsGameOver)
+        {
+            audioSource.Stop();
+        }
+    }
+
+    public void PlayingAudio()
+    {
+        Debug.Log("AUDIO PLAYED");
+        IsPlayingAudio = true;
+        audioSource.PlayOneShot(chaseClip);
+    }
 
     private void FixedUpdate()
     {
