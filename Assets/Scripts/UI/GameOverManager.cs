@@ -9,12 +9,16 @@ public class GameOverManager : MonoBehaviour
     public void ShowGameOver()
     {
         gameOverUI.SetActive(true);
+        Debug.Log("GameOver Show");
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Restart the current level
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
     }
 
     public void LoadMainMenu()

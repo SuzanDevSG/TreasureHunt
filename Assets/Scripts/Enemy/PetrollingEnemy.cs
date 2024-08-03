@@ -26,7 +26,7 @@ public class PatrollingEnemy : MonoBehaviour
     public GameOverManager gameOverManager;
 
     private bool isChasingPlayer = false;
-    private bool isGameOver = false; // Add this line
+    private bool isGameOver = false; 
 
     private void Awake()
     {
@@ -160,7 +160,7 @@ public class PatrollingEnemy : MonoBehaviour
     private void CatchPlayer(GameObject player)
     {
         Debug.Log("Catching player");
-        isGameOver = true; // Add this line to mark the game as over
+        isGameOver = true; 
 
         if (chaseAudioSource.isPlaying)
         {
@@ -176,6 +176,7 @@ public class PatrollingEnemy : MonoBehaviour
         animator.SetBool("isChasing", false);
 
         gameOverManager.ShowGameOver();
+
 
         Debug.Log("Player caught and set inactive! Enemy movement stopped.");
     }

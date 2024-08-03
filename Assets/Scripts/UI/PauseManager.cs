@@ -11,6 +11,7 @@ public class PauseManager : MonoBehaviour
     public Button resumeButton;
     public Button exitButton;
     private bool isPaused = false;
+    
 
     void Start()
     {
@@ -22,10 +23,17 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            Pause();
-        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+            
+            if (isPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+
     }
 
     public void Resume()
