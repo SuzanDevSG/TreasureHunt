@@ -26,7 +26,7 @@ public class KeyScript : MonoBehaviour
 
     void Update()
     {
-        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerNearby && Input.GetKeyDown(KeyCode.F))
         {
             AcquireKey();
         }
