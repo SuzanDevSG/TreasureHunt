@@ -8,6 +8,6 @@ public class splash : MonoBehaviour
 {
     public void LoadScene()
     {
-        SceneManager.LoadScene("UI");
+        SceneManager.LoadScene(1);
     }
 }

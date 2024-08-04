@@ -62,7 +62,7 @@ public class PetrollingEnemy : MonoBehaviour
         }
         else
         {
-            if (playerInChaseRange)
+            if (playerInChaseRange && !playerInSightRange)
             {
                 ChasePlayer();
             }
