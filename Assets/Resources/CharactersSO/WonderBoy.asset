@@ -13,17 +13,10 @@ MonoBehaviour:
   m_Name: WonderBoy
   m_EditorClassIdentifier: 
   id: 1
-  characterName: ASSASSIN
+  characterName: JOYBOY
   characterDescription: 
   maxSpeed: 2.5
   maxHealth: 100
   maxEnergy: 100
   lookSpeed: 0.1
-  dashCooldown: 2
-  dashDuration: 0.5
-  dashSpeed: 20
-  CanDash: 1
-  InvisibleCooldown: 10
-  InvisibleDuration: 2
-  CanInvisible: 0
   skillId: 

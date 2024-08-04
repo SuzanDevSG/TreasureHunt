@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: WonderBoySkills
   m_EditorClassIdentifier: 
   CanDash: 1
-  dashCooldown: 2
+  dashCooldown: 5
   dashDuration: 0.5
   dashSpeed: 20
   CanInvisible: 1
-  InvisibleCooldown: 2
+  InvisibleCooldown: 5
   InvisibleDuration: 5
