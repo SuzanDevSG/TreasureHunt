@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         playerControl = new Vector3(moveInput.x, 0, moveInput.y).normalized;
         IsRunning = RunAction.IsPressed();
+
         currentLookSpeed = IsRunning ? playerProfileSO.lookSpeed : playerProfileSO.lookSpeed * 2;
         maxSpeed = IsRunning ? runSpeed : walkSpeed ;
         currentSpeedFactor = IsRunning ? defualtSpeedFactor * 2 +4 : defualtSpeedFactor;

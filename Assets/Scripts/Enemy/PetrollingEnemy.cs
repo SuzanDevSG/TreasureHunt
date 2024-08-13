@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,9 @@ public class PetrollingEnemy : MonoBehaviour
 
     public static bool isChasingPlayer = false;
     public static bool isGameOver = false;
+
+
+    
 
     private void Awake()
     {
