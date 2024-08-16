@@ -1,11 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class PetrollingEnemy : MonoBehaviour
 {
+    [SerializeField] private EventHandler eventHandler;
     public NavMeshAgent agent;
     public Transform player;
     public EnemyData enemyData;
@@ -76,10 +74,7 @@ public class PetrollingEnemy : MonoBehaviour
                 Patrol();
             }
         }
-
     }
-
-
     private bool CheckPlayerInSightRange()
     {
         // Create a sphere around the enemy to detect players within sight range
@@ -111,6 +106,9 @@ public class PetrollingEnemy : MonoBehaviour
 
     private void Patrol()
     {
+        Debug.Log("patrolling");
+        eventHandler.StopPlayerChasing?.Invoke();
+
         if (waypoints.Length == 0)
             return;
 
@@ -126,6 +124,9 @@ public class PetrollingEnemy : MonoBehaviour
 
     private void ChasePlayer()
     {
+        Debug.Log("chasingPlayer");
+        eventHandler.StartPlayerChasing?.Invoke();
+
         if (isGameOver) return; // Add this line to prevent chasing if the game is over
 
         animator.SetBool("isPatrolling", false); // Disable patrolling animation
@@ -138,11 +139,9 @@ public class PetrollingEnemy : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Enemy collided with player");
             float distanceToPlayer = Vector3.Distance(transform.position, other.transform.position);
             if (distanceToPlayer <= catchingRange)
             {
-                Debug.Log("Player within catching range");
                 CatchPlayer(other.gameObject);
             }
         }
@@ -150,10 +149,7 @@ public class PetrollingEnemy : MonoBehaviour
 
     private void CatchPlayer(GameObject player)
     {
-        Debug.Log("Catching player");
         isGameOver = true; 
-
-        
 
         player.SetActive(false); // Set player inactive
         agent.speed = 0; // Stop the enemy movement
@@ -163,8 +159,5 @@ public class PetrollingEnemy : MonoBehaviour
         animator.SetBool("isChasing", false);
 
         gameOverManager.ShowGameOver();
-
-
-        Debug.Log("Player caught and set inactive! Enemy movement stopped.");
     }
 }

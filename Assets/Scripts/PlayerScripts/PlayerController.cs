@@ -1,15 +1,14 @@
-using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public class PlayerController : MonoBehaviour
 {
+
     [Header("GetComponent")]
     public PlayerProfileSO playerProfileSO;
     private Rigidbody rb;
     private Camera cam;
+    [SerializeField] private EventHandler eventHandler;
 
     [Header("PlayerInputActions")]
     public PlayerInputSystem playerInputSystem;
@@ -79,11 +78,20 @@ public class PlayerController : MonoBehaviour
 
         walkSpeed = playerProfileSO.maxSpeed;
         runSpeed = playerProfileSO.maxSpeed * 2;
+
+        eventHandler.StartPlayerChasing.AddListener(StartPlayingAudio);
+        eventHandler.StopPlayerChasing.AddListener(StopPlayingAudio);
+
     }
+
+
     private void OnDestroy()
     {
         MoveAction.performed -= MovementInput;
         MoveAction.canceled -= MovementInput;
+
+        eventHandler.StartPlayerChasing.RemoveAllListeners();
+        eventHandler.StopPlayerChasing.RemoveAllListeners();
     }
     private void Update()
     {
@@ -95,48 +103,9 @@ public class PlayerController : MonoBehaviour
         currentSpeedFactor = IsRunning ? defualtSpeedFactor * 2 +4 : defualtSpeedFactor;
         SmoothSpeedCondition();
 
-        CheckEnemyStatus();
+        CheckGameState();
     }
 
-    private void CheckEnemyStatus()
-    {
-        IsbeingChased = PetrollingEnemy.isChasingPlayer;
-        IsGameOver = PetrollingEnemy.isGameOver;
-
-        if (pauseMenu)
-        {
-            if (audioSource.isPlaying)
-            {
-                audioSource.Stop();
-            }
-        }
-
-        if (IsbeingChased && !IsPlayingAudio)
-        {
-            PlayingAudio();
-        }
-        if (!IsbeingChased)
-        {
-            IsPlayingAudio = false;
-            if (audioSource.isPlaying)
-            {
-                
-                audioSource.Stop();
-            }
-        }
-
-        if (IsGameOver)
-        {
-            audioSource.Stop();
-        }
-    }
-
-    public void PlayingAudio()
-    {
-        Debug.Log("AUDIO PLAYED");
-        IsPlayingAudio = true;
-        audioSource.PlayOneShot(chaseClip);
-    }
 
     private void FixedUpdate()
     {
@@ -194,4 +163,42 @@ public class PlayerController : MonoBehaviour
         smoothSpeedCoroutine = !smoothSpeedCoroutine;
     }
 
+
+
+    private void CheckGameState()
+    {
+        if (pauseMenu)
+        {
+            if (IsPlayingAudio)
+            {
+                audioSource.Stop();
+            }
+        }
+        if (IsGameOver)
+        {
+            audioSource.Stop();
+        }
+    }
+
+    private void StopPlayingAudio()
+    {
+        
+        Debug.Log("STOPADUIOPLAYING");
+        IsbeingChased = false;
+        if (IsPlayingAudio)
+        {
+            IsPlayingAudio = false;
+            audioSource.Stop();
+        }
+    }
+    public void StartPlayingAudio()
+    {
+        IsbeingChased = true;
+        if(!IsPlayingAudio)
+        {
+            IsPlayingAudio = true;
+            Debug.Log("AUDIO PLAYED");
+            audioSource.PlayOneShot(chaseClip);
+        }
+    }
 }

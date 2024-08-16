@@ -45,7 +45,7 @@ public class PauseManager : MonoBehaviour
 
         if (playerController.IsbeingChased)
         {
-            playerController.PlayingAudio();
+            playerController.StartPlayingAudio();
         }
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
