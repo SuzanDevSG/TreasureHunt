@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; 
 using UnityEngine.UI;
@@ -25,13 +23,12 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
-        playerController.pauseMenu = IsPaused;
 
-        if (playerController.PauseAction.triggered && !playerController.IsGameOver)
+        if (playerController.PauseAction.triggered && !PetrollingEnemy.IsGameOver)
         {
             Pause();
         }
-        if (playerController.PauseAction.triggered && !playerController.IsGameOver && !IsPaused)
+        if (playerController.PauseAction.triggered && !PetrollingEnemy.IsGameOver && !IsPaused)
         {
             Resume();
         }
@@ -43,10 +40,10 @@ public class PauseManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        if (playerController.IsbeingChased)
-        {
-            playerController.StartPlayingAudio();
-        }
+        //if (playerController.IsbeingChased)
+        //{
+        //    playerController.StartPlayingAudio();
+        //}
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         IsPaused = false;

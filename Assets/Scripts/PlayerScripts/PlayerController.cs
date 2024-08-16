@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     public PlayerProfileSO playerProfileSO;
     private Rigidbody rb;
     private Camera cam;
-    [SerializeField] private EventHandler eventHandler;
 
     [Header("PlayerInputActions")]
     public PlayerInputSystem playerInputSystem;
@@ -33,24 +32,12 @@ public class PlayerController : MonoBehaviour
     public float smoothSpeed;
     private float defualtSpeedFactor = 3;
     [SerializeField] private float currentSpeedFactor;
-
-    [Header("Enemy")]
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip chaseClip;
-    public bool IsbeingChased;
-    public bool IsGameOver;
-    public bool pauseMenu;
-    private bool IsPlayingAudio;
-
     private void Awake()
     {
         Time.timeScale = 1;
         playerInputSystem = new PlayerInputSystem();
         rb = GetComponent<Rigidbody>();
-        if(audioSource == null)
-        {
-        audioSource = GetComponent<AudioSource>();
-        }
+
         cam = Camera.main;
     }
     private void OnEnable()
@@ -78,20 +65,11 @@ public class PlayerController : MonoBehaviour
 
         walkSpeed = playerProfileSO.maxSpeed;
         runSpeed = playerProfileSO.maxSpeed * 2;
-
-        eventHandler.StartPlayerChasing.AddListener(StartPlayingAudio);
-        eventHandler.StopPlayerChasing.AddListener(StopPlayingAudio);
-
     }
-
-
     private void OnDestroy()
     {
         MoveAction.performed -= MovementInput;
         MoveAction.canceled -= MovementInput;
-
-        eventHandler.StartPlayerChasing.RemoveAllListeners();
-        eventHandler.StopPlayerChasing.RemoveAllListeners();
     }
     private void Update()
     {
@@ -102,11 +80,7 @@ public class PlayerController : MonoBehaviour
         maxSpeed = IsRunning ? runSpeed : walkSpeed ;
         currentSpeedFactor = IsRunning ? defualtSpeedFactor * 2 +4 : defualtSpeedFactor;
         SmoothSpeedCondition();
-
-        CheckGameState();
     }
-
-
     private void FixedUpdate()
     {
         PlayerControl();
@@ -163,42 +137,4 @@ public class PlayerController : MonoBehaviour
         smoothSpeedCoroutine = !smoothSpeedCoroutine;
     }
 
-
-
-    private void CheckGameState()
-    {
-        if (pauseMenu)
-        {
-            if (IsPlayingAudio)
-            {
-                audioSource.Stop();
-            }
-        }
-        if (IsGameOver)
-        {
-            audioSource.Stop();
-        }
-    }
-
-    private void StopPlayingAudio()
-    {
-        
-        Debug.Log("STOPADUIOPLAYING");
-        IsbeingChased = false;
-        if (IsPlayingAudio)
-        {
-            IsPlayingAudio = false;
-            audioSource.Stop();
-        }
-    }
-    public void StartPlayingAudio()
-    {
-        IsbeingChased = true;
-        if(!IsPlayingAudio)
-        {
-            IsPlayingAudio = true;
-            Debug.Log("AUDIO PLAYED");
-            audioSource.PlayOneShot(chaseClip);
-        }
-    }
 }

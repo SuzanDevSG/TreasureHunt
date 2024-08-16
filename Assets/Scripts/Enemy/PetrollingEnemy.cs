@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class PetrollingEnemy : MonoBehaviour
 {
-    [SerializeField] private EventHandler eventHandler;
+    private EventHandler eventHandler;
     public NavMeshAgent agent;
     public Transform player;
     public EnemyData enemyData;
@@ -23,54 +23,55 @@ public class PetrollingEnemy : MonoBehaviour
     [SerializeField] private float catchingRange = 2f; // Define the catching range
     public GameOverManager gameOverManager;
 
-    public static bool isChasingPlayer = false;
-    public static bool isGameOver = false;
-
-
-    
+    public bool IsChasingPlayer = false;
+    public static bool IsGameOver = false;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        eventHandler = new();
     }
-
-    void Start()
+    private void Start()
     {
         if (waypoints.Length > 0)
         {
             agent.SetDestination(waypoints[currentWaypointIndex].position);
         }
-        isGameOver = false;
-    }
+        IsGameOver = false;
 
-    void Update()
+        eventHandler.StartPlayerChasing.AddListener(AudioManager.instance.PlayerChasingAudio);
+        eventHandler.StopPlayerChasing.AddListener(AudioManager.instance.StopChasingAudio);
+    }
+    private void OnDestroy()
     {
-        if (isGameOver) return; // Add this line to prevent further updates if the game is over
+        eventHandler.StartPlayerChasing.RemoveAllListeners();
+        eventHandler.StopPlayerChasing.RemoveAllListeners();
+
+    }
+    private void Update()
+    {
+        if (IsGameOver) return; // Add this line to prevent further updates if the game is over
 
         playerInSightRange = CheckPlayerInSightRange();
         playerInChaseRange = CheckPlayerInChaseRange();
 
-        if (!isChasingPlayer)
+        if(playerInSightRange && playerInChaseRange)
         {
-            if (playerInSightRange)
+            if (!IsChasingPlayer)
             {
-                isChasingPlayer = true;
                 ChasePlayer();
-            }
-            else
-            {
-                Patrol();
+                IsChasingPlayer = true;
+                eventHandler.StartPlayerChasing?.Invoke();
             }
         }
         else
         {
-            if (playerInChaseRange && !playerInSightRange)
+            UpdatePatrolDestination();
+            if (IsChasingPlayer)
             {
-                ChasePlayer();
-            }
-            else
-            {
-                isChasingPlayer = false;
+            Debug.Log("Stopped CHasing");
+                eventHandler.StopPlayerChasing?.Invoke();
+                IsChasingPlayer = false;
                 Patrol();
             }
         }
@@ -98,23 +99,20 @@ public class PetrollingEnemy : MonoBehaviour
         }
         return false;
     }
-
     private bool CheckPlayerInChaseRange()
     {
         return Vector3.Distance(transform.position, player.position) <= chaseRange;
     }
-
     private void Patrol()
     {
-        Debug.Log("patrolling");
-        eventHandler.StopPlayerChasing?.Invoke();
-
         if (waypoints.Length == 0)
             return;
-
         animator.SetBool("isPatrolling", true); // Set patrolling animation
         animator.SetBool("isChasing", false); // Disable chasing animation
         agent.speed = patrolSpeed;
+    }
+    private void UpdatePatrolDestination()
+    {
         if (agent.remainingDistance < 1f)
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
@@ -127,7 +125,7 @@ public class PetrollingEnemy : MonoBehaviour
         Debug.Log("chasingPlayer");
         eventHandler.StartPlayerChasing?.Invoke();
 
-        if (isGameOver) return; // Add this line to prevent chasing if the game is over
+        if (IsGameOver) return; // Add this line to prevent chasing if the game is over
 
         animator.SetBool("isPatrolling", false); // Disable patrolling animation
         animator.SetBool("isChasing", true); // Enable chasing animation
@@ -149,7 +147,7 @@ public class PetrollingEnemy : MonoBehaviour
 
     private void CatchPlayer(GameObject player)
     {
-        isGameOver = true; 
+        IsGameOver = true; 
 
         player.SetActive(false); // Set player inactive
         agent.speed = 0; // Stop the enemy movement

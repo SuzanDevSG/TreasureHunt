@@ -1,6 +1,3 @@
-using System.Collections;
-using Unity.Properties;
-using UnityEditor.U2D;
 using UnityEngine;
 
 public class PlayerAnimations : MonoBehaviour
